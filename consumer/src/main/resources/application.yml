@@ -1,0 +1,25 @@
+server:
+  port: 9080
+  servlet:
+    context-path: /consumer
+spring:
+  rabbitmq:
+    host: 192.168.57.11
+    port: 5672
+    username: admin
+    password: admin
+#    virtual-host: /my-rabbit
+    listener:
+      simple:
+        concurrency: 5
+        max-concurrency: 10
+        #限流
+        prefetch: 1
+        #手动确认
+        acknowledge-mode: manual
+
+my.env: local
+amqpmail:
+  queue.name: ${my.env}.mail.queue
+  exchange.name: ${my.env}.mail.exchange
+  routing.key.name: ${my.env}.mail.routing.key

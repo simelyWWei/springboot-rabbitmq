@@ -1,0 +1,22 @@
+server:
+  port: 9081
+  servlet:
+    context-path: /producer
+
+spring:
+  rabbitmq:
+    host: 192.168.57.11
+    port: 5672
+    username: admin
+    password: admin
+#    virtual-host: /my-rabbit
+    publisher-confirms: true
+    publisher-returns: true
+    template:
+      mandatory: true
+
+my.env: local
+amqpmail:
+  queue.name: ${my.env}.mail.queue
+  exchange.name: ${my.env}.mail.exchange
+  routing.key.name: ${my.env}.mail.routing.key
